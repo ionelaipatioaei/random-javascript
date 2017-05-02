@@ -1,0 +1,11 @@
+body.main {
+    width: auto;
+    height: 2000px;
+    background: linear-gradient(45deg, lightblue, lightgreen);
+}
+
+p {
+    color: dodgerblue;
+    font-size: 20px;
+    text-align: left;
+}
