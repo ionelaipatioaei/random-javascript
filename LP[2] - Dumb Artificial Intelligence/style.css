@@ -1,0 +1,16 @@
+body.main {
+    width: auto;
+    height: 2000px;
+    background: linear-gradient(45deg, pink, lightblue);
+}
+
+p {
+    color: dodgerblue;
+    font-size: 27px;
+    text-align: center;
+}
+
+h3 {
+    color: forestgreen;
+    text-align: left;
+}
