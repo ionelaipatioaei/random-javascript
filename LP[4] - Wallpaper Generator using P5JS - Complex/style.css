@@ -1,0 +1,23 @@
+body {
+    width: auto;
+    height: 5000px;
+    background: linear-gradient(180deg, lightgreen, lightyellow);
+}
+
+h1 {
+    color: dimgray;
+    text-align: center;
+}
+
+h2 {
+    color: darkmagenta;
+}
+
+h3 {
+    color: firebrick;
+    text-align: center;
+}
+
+h4 {
+    color: darkslategray;
+}
