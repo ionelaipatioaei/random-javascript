@@ -1,0 +1,14 @@
+body {
+    width: auto;
+    height: auto;
+    background: linear-gradient(90deg, #00cc99, #33cc33);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    color: dimgray;
+    text-align: center;
+    font-family: "Courier New", Courier, monospace;
+}
