@@ -3,6 +3,7 @@ var playAIButton;
 var restartButton;
 
 var area = [];
+var score = [0, 0];
 
 var playPVP = false;
 var playAI = false;
@@ -12,7 +13,6 @@ var delayIsFinished = false;
 var nextMove;
 
 var currentTurn = 0;
-var currentTurnLetter;
 var movesLeft = 9;
 var winner = "-";
 var moved = false;
@@ -98,15 +98,14 @@ function playingUI() {
 function drawContent() {
     push();
     textSize(35);
-    //Translate number to letter
-    currentTurn == 0 ? currentTurnLetter = "O" : currentTurnLetter = "X";
-    
-    text("Current Turn: " + currentTurnLetter, 170, 30);
-    text("Moves left: " + movesLeft, 150, 60);
-    text("Winner: " + winner, 108, 90);
+    text("O Score", 90, 30);
+    text("X Score", 500, 30);
+    textSize(90);
+    text(score[0], 90, 95);
+    text(score[1], 500, 95);
     pop();
     
-    restartButton = new Button(width - 116, 47, 215, 65, "RESTART", 50, 15, color(201, 208, 200), color(126, 143, 124), 3);
+    restartButton = new Button(width / 2, 47, 215, 65, "RESTART", 50, 15, color(201, 208, 200), color(126, 143, 124), 3);
     restartButton.show();
     
     //Lines
@@ -174,7 +173,7 @@ function drawGrid() {
                     change();
                 }
             }
-        } 
+        }
     }
 }
 
@@ -182,7 +181,6 @@ function findUndefinedArea() {
     for(let i = 0; i <= 8; i++) {
         if(area[i] == undefined) {
             return i;
-            break;
         }
     }
 }
@@ -193,6 +191,16 @@ function areaHover(startX, endX, startY, endY, sizeX, sizeY) {
         noStroke();
         fill(0, 40);
         rect(startX, startY, sizeX, sizeY);
+        
+        fill(198, 61, 15, 155);
+        textSize(250);
+        if(currentTurn == 0) {
+            text("O", startX + 97, startY + 171);
+        }
+        fill(126, 143, 124, 155);
+        if(currentTurn == 1) {
+            text("X", startX + 97, startY + 171);
+        }
         pop();
         
         return true;
@@ -201,25 +209,25 @@ function areaHover(startX, endX, startY, endY, sizeX, sizeY) {
     }
 }
 
-function drawLetter(x, y, letter) {
-    push();
-    fill(198, 61, 15);
-    textSize(250);
-    if(letter == 0) {
-        text("O", x, y);
-    }
-    fill(126, 143, 124);
-    if(letter == 1) {
-        text("X", x, y);
-    }
-    pop();
-}
-
 function drawOX() {
     let x = [100, 300, 500, 100, 300, 500, 100, 300, 500];
     let y = [273, 273, 273, 473, 473, 473, 673, 673, 673];
     for(let i = 0; i < area.length; i++) {
-        drawLetter(x[i], y[i], area[i]);
+        drawLetter(x[i], y[i], area[i], 255);
+    }
+    
+    function drawLetter(x, y, letter, opacity) {
+        push();
+        fill(198, 61, 15, opacity);
+        textSize(250);
+        if(letter == 0) {
+            text("O", x, y);
+        }
+        fill(126, 143, 124, opacity);
+        if(letter == 1) {
+            text("X", x, y);
+        }
+        pop();
     }
 }
 
@@ -232,6 +240,9 @@ function change() {
         currentTurn = 0;
     }
     totalMoves += 1;
+    if(win()) {
+        addScore();
+    }
 }
 
 function win() {
@@ -248,11 +259,13 @@ function win() {
             gameOver = true;
             winner = "O";
             drawLine(areaX[firstCell[i]], areaY[firstCell[i]], areaX[thirdCell[i]], areaY[thirdCell[i]]);
+            return true;
         }
         if(area[firstCell[i]] == 1 && area[secondCell[i]] == 1 && area[thirdCell[i]] == 1) {
             gameOver = true;
             winner = "X";
             drawLine(areaX[firstCell[i]], areaY[firstCell[i]], areaX[thirdCell[i]], areaY[thirdCell[i]]);
+            return true;
         }
     }
     
@@ -262,6 +275,18 @@ function win() {
         stroke(72, 83, 70, 200);
         line(startX, startY, endX, endY);
         pop();
+    }
+    return false;
+}
+
+function addScore() {
+    if(winner == "O") {
+        score[0]++;
+        winner = "-";
+    }
+    if(winner == "X") {
+        score[1]++;
+        winner = "-";
     }
 }
 
@@ -287,11 +312,8 @@ function drawWinner() {
     push();
     fill(57);
     textSize(140);
-    if(winner == "O" && gameOver) {
-        text("O WINS!", width / 2 + 10, height / 2 + 90);
-    }
-    if(winner == "X" && gameOver) {
-        text("X WINS!", width / 2 + 10, height / 2 + 90);
+    if(gameOver && winner != "-") {
+        text(winner + " WINS!", width / 2 + 10, height / 2 + 90);
     }
     if(movesLeft == 0 && winner == "-") {
         text("DRAW!", width / 2 + 10, height / 2 + 90);
