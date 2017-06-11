@@ -1,0 +1,8 @@
+body {
+    width: auto;
+    height: auto;
+    background: linear-gradient(90deg, #558C89, #74AFAD);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
