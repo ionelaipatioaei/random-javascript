@@ -28,7 +28,7 @@ function setup() {
 }
 
 function draw() {
-	background(input[0].value(), input[1].value(), input[2].value());
+    background(input[0].value(), input[1].value(), input[2].value());
     convert();
 
     output[0].html("CYMK Value(" + floor(cyanVal) + "%, " + floor(yellowVal) + "%, " + floor(magentaVal) + "%, " + floor(keyVal) + "%)");
