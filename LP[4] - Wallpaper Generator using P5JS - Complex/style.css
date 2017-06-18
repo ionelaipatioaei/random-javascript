@@ -1,23 +1,21 @@
 body {
     width: auto;
-    height: 5000px;
-    background: linear-gradient(180deg, lightgreen, lightyellow);
+    height: 1000px;
+    background: linear-gradient(135deg, #4A96AD 20%, #74AFAD 60%);
 }
 
 h1 {
-    color: dimgray;
-    text-align: center;
+    color: #D9853B;
+    font-family: "Courier New", Courier, monospace;
 }
 
 h2 {
-    color: darkmagenta;
+    color: #F5F3EE;
+    font-family: "Courier New", Courier, monospace;
 }
 
-h3 {
-    color: firebrick;
-    text-align: center;
+p {
+    color: #ECECEA;
+    font-family: "Courier New", Courier, monospace;
 }
 
-h4 {
-    color: darkslategray;
-}
