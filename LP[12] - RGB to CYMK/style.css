@@ -1,0 +1,12 @@
+/*Usual CSS style for P5 projects*/
+
+body {
+    width: auto;
+    height: auto;
+    background: linear-gradient(90deg, #04d9d9, #049ed9);
+    /*
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    */
+}
