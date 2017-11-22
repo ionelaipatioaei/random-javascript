@@ -125,7 +125,8 @@ function createSquare() {
 			}
 		}
 	}
-
+	
+	//Need to find a better way to do this
 	let xOption = [0, width / 3, width / 1.5, 0, width / 1.5, 0, width / 3, width / 1.5];
 	let yOption = [0, 0, 0, (height - writeSpace) / 3, (height - writeSpace) / 3, (height - writeSpace) / 1.5, (height - writeSpace) / 1.5, (height - writeSpace) / 1.5];
 	let margCell = [false, true, false, true, true, false, true, false];
